@@ -1,0 +1,92 @@
+
+body {
+
+	background-color: tan;
+}
+
+#calculator {
+    display: block;
+    margin: auto;
+    margin-top: 100px;
+  	padding: 20px 10px;
+    width: 280px;
+    background-color: darkgray;
+    box-shadow: 5px 5px 2px grey;
+    
+}
+
+.right {
+	display: float;
+	float: right;
+}
+
+.left {
+	display: float;
+	float: left;
+}
+
+#displayArea {
+	display: block;
+	margin: auto;
+	padding-top: 10px;
+	padding-bottom: 5px;
+    height: 100px;
+    background-color: #949A8C;
+    width: 258px;
+    clear: both;    
+    font-family: 'Play', sans-serif;
+}
+
+#displayTop {
+	height: 20px;
+	padding: 5px;
+	font-variant: small-caps;
+}
+
+#display > p {
+    border-color: black;
+    border-style: solid;
+    border-width: 3px;
+    margin-left: 5px;
+    margin-right: 5px;
+	display: block;
+    color: black;
+    font-size: 44px;
+    padding: 8px;
+    text-align: right;
+    background-color: #B8CABD;
+    width: 224px;
+}
+
+#keyArea {
+    background-color: darkgray;
+    padding-top: 15px;
+    text-align: center;
+}
+
+.keyRow {
+    display: block;
+}
+
+.key {
+    height: 25px;
+    width: 50px;
+    margin: 5px;
+    color: white;
+}
+
+.number, .special {
+    background-color: lightgrey;
+}
+
+.operator {
+    background-color: #DDA0DD;
+}
+
+.function {
+    background-color: black;
+}
+
+.containsMemoryValue {
+	background-color: orange;
+}

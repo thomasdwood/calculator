@@ -1,4 +1,3 @@
-// I'm adding this comment to test my SSH connection
 // GLOBAL VARIABLES
 
 const maxDisplaySize = 9;
@@ -75,7 +74,7 @@ function multiply(a,b) {
 function divide(a,b) {
     if (b == 0) {
     	isCalculationError = true;
-        return "NO RESULT FOR YOU!";
+        return "∞ ERROR ∞";
     }
     return a / b;
 }
@@ -89,7 +88,7 @@ function pow(a,b) {
 function squareRoot(a) {
 	if (a < 0) {
 		isCalculationError = true;
-		return "IMAGINARY NUMBER"
+		return "🦄ERROR"
 	}
 	return Math.sqrt(a);
 }
@@ -154,6 +153,12 @@ function binaryOperation(a,b,operator) {
 }
 
 function unaryOperation(a,operator) {
+	console.log(Number(a))
+	if (isNaN(a)) {
+		console.log("NAN")
+		a = 0;
+	}
+
 	switch(operator) {
 		case unaryOperatorsEnum.PERCENT:
 			workingNumber = percent(a);
@@ -176,7 +181,7 @@ function unaryOperation(a,operator) {
 
 function getExponentNotation(val) {
 	if (val < 1000000 && val > 0.0000001) {
-		return val
+		return val;
 	}
 	
 	var str = String(val);
@@ -214,6 +219,11 @@ function getExponentNotation(val) {
 }
 
 function evaluateButtonPress(val) {
+	
+	operand = processNumber(operand)
+	workingNumber = processNumber(workingNumber)
+
+	console.log(`operand: ${operand}, workingNumber: ${workingNumber}`)
 	console.log(`Evaluating ${val}`)
 	
     switch (val) {
@@ -280,10 +290,10 @@ function evaluateButtonPress(val) {
 			operand = null;
 			break;
         case calculatorFunctionsEnum.ALLCLEAR:
-            workingNumber = "";
-            operand = null;
-            operator = null;
-            updateDisplay();
+			workingNumber = "";
+			operand = null;
+			operator = null;
+			updateDisplay();
             break;
         case calculatorFunctionsEnum.NEGATION:
             workingNumber = negate(workingNumber);
@@ -328,11 +338,49 @@ function evaluateButtonPress(val) {
     console.log(`workingNumber: ${workingNumber}, displayValue: ${displayValue}, operand: ${operand}, operator: ${operator}`);
 }
 
+
+function processNumber(num) {
+	num = String(num);
+	if (num == "" || num == "0") {
+		return num
+	}
+
+	if (num == "Err") {
+
+	}
+
+	ePos = num.indexOf('e')
+	if (ePos > -1) {
+		console.log('Processing Sci Notation')
+		nums = num.split("e")
+		return multiply(nums[0], pow(10, nums[1]))
+	} else {
+		return num
+	}
+}
+
 function evaluateKeyPress(event) {
 	console.log(event.keyCode);
-	switch (event.keyCode) {
-		default: 
+	switch (event.key) {
+		case "*":
+		case "x":
+		case "X":
+			evaluateButtonPress(binaryOperatorsEnum.MULTIPLICATION);
 			break;
+		case "/":
+			evaluateButtonPress(binaryOperatorsEnum.DIVISION);
+			break;
+		case "Enter":
+			evaluateButtonPress(calculatorFunctionsEnum.EQUALS);
+			break;
+		case "Backspace":
+			evaluateButtonPress(calculatorFunctionsEnum.BACKSPACE);
+			break;
+		case "^":
+			evaluateButtonPress(binaryOperatorsEnum.EXPONENT);
+			break;
+		default:
+			evaluateButtonPress(event.key)
 	}
 }
 

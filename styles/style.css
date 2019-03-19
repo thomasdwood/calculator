@@ -1,6 +1,5 @@
 
 body {
-
 	background-color: tan;
 }
 
@@ -62,6 +61,7 @@ body {
     background-color: darkgray;
     padding-top: 15px;
     text-align: center;
+    font-size: 12px;
 }
 
 .keyRow {
@@ -76,11 +76,12 @@ body {
 }
 
 .number, .special {
-    background-color: lightgrey;
+    background-color: #4B6A88;
 }
 
 .operator {
-    background-color: #DDA0DD;
+    background-color: #9B59B6;
+    font-size: 13px;
 }
 
 .function {
